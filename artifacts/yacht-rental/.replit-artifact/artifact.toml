@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Аренда яхт и катеров СПб"
+version = "1.0.0"
+id = "artifacts/yacht-rental"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20598
+
+[services.development]
+run = "pnpm --filter @workspace/yacht-rental run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/yacht-rental", "run", "build" ]
+publicDir = "artifacts/yacht-rental/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20598"
+BASE_PATH = "/"
