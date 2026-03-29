@@ -135,7 +135,7 @@ export default function About() {
             >
               <div className="relative overflow-hidden rounded-3xl h-96 lg:h-[480px]">
                 <img
-                  src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=800&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1566847438217-76e82d3f7ae9?w=800&q=80&auto=format&fit=crop"
                   alt="История компании"
                   className="w-full h-full object-cover"
                   crossOrigin="anonymous"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Anchor } from "lucide-react";
+import { Menu, X, Anchor } from "lucide-react";
 
 const navLinks = [
   { label: "Главная", href: "/" },
@@ -12,21 +12,12 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [location] = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     setIsMobileOpen(false);
   }, [location]);
-
-  const scrolled = isScrolled;
 
   return (
     <>
@@ -34,9 +25,7 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass-dark" : "bg-transparent"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm transition-all duration-500"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 py-3">
@@ -47,10 +36,10 @@ export default function Navbar() {
                   <Anchor className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <div className={`font-display text-lg leading-none transition-colors duration-300 ${scrolled ? "text-slate-900" : "text-white"}`}>
+                  <div className="font-display text-lg leading-none text-slate-900 transition-colors duration-300">
                     NEVA<span className="text-blue-500">YACHT</span>
                   </div>
-                  <div className={`text-[9px] tracking-[0.18em] uppercase leading-none mt-0.5 transition-colors duration-300 ${scrolled ? "text-slate-500" : "text-slate-400"}`}>
+                  <div className="text-[9px] tracking-[0.18em] uppercase leading-none mt-0.5 text-slate-500 transition-colors duration-300">
                     Санкт-Петербург
                   </div>
                 </div>
@@ -65,9 +54,7 @@ export default function Navbar() {
                     className={`relative px-4 py-2 text-sm font-semibold tracking-wide cursor-pointer transition-colors duration-200 ${
                       location === link.href
                         ? "text-blue-600"
-                        : scrolled
-                        ? "text-slate-600 hover:text-slate-900"
-                        : "text-slate-300 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
                     }`}
                     whileHover={{ y: -1 }}
                   >
@@ -85,13 +72,6 @@ export default function Navbar() {
 
             {/* CTA */}
             <div className="hidden lg:flex items-center gap-4">
-              <a
-                href="tel:+78123334455"
-                className={`flex items-center gap-2 text-sm font-semibold transition-colors duration-300 ${scrolled ? "text-slate-600 hover:text-slate-900" : "text-slate-300 hover:text-white"}`}
-              >
-                <Phone className="w-4 h-4 text-blue-500" />
-                +7 (812) 333-44-55
-              </a>
               <Link href="/contacts">
                 <motion.button
                   whileHover={{ scale: 1.03, boxShadow: "0 0 24px rgba(37,99,235,0.35)" }}
@@ -105,7 +85,7 @@ export default function Navbar() {
 
             {/* Mobile Toggle */}
             <button
-              className={`lg:hidden p-2 transition-colors ${scrolled ? "text-slate-700" : "text-white"}`}
+              className="lg:hidden p-2 transition-colors text-slate-700"
               onClick={() => setIsMobileOpen(!isMobileOpen)}
             >
               {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -147,10 +127,6 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
                 className="mt-6"
               >
-                <a href="tel:+78123334455" className="flex items-center gap-2 py-3 text-slate-600 font-semibold mb-4">
-                  <Phone className="w-4 h-4 text-blue-500" />
-                  +7 (812) 333-44-55
-                </a>
                 <Link href="/contacts">
                   <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-500 text-white text-lg font-bold shadow-lg">
                     Забронировать

@@ -14,7 +14,8 @@ function HeroSection() {
   const heroY = useTransform(scrollY, [0, 500], [0, 60]);
 
   const titleChars1 = "АРЕНДА".split("");
-  const titleChars2 = "ЯХТ И КАТЕРОВ".split("");
+  const titleChars2 = "КАТЕРОВ".split("");
+  const titleChars3 = "И ЯХТ".split("");
 
   return (
     <section
@@ -71,12 +72,12 @@ function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.4 }}
               className="relative font-display leading-[0.88] select-none"
-              style={{ fontSize: "clamp(56px, 9vw, 118px)" }}
+              style={{ fontSize: "clamp(56px, 9vw, 118px)", opacity: 0.82 }}
             >
               <span
                 className="block"
                 style={{
-                  background: "linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #38bdf8 100%)",
+                  backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(147,197,253,0.85) 50%, rgba(56,189,248,0.8) 100%)",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -95,14 +96,26 @@ function HeroSection() {
                   </motion.span>
                 ))}
               </span>
-              <span className="block">
+              <span className="block" style={{ color: "rgba(255,255,255,0.82)" }}>
                 {titleChars2.map((char, i) => (
                   <motion.span
                     key={i}
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.65, delay: 0.85 + i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-white"
+                    style={{ display: "inline-block", minWidth: char === " " ? "0.3em" : undefined }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+              <span className="block" style={{ color: "rgba(255,255,255,0.82)" }}>
+                {titleChars3.map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.65, delay: 1.1 + i * 0.04, ease: [0.22, 1, 0.36, 1] }}
                     style={{ display: "inline-block", minWidth: char === " " ? "0.3em" : undefined }}
                   >
                     {char}
@@ -164,7 +177,7 @@ function HeroSection() {
               { value: "4.9★", label: "Средний рейтинг" },
             ].map((stat, i) => (
               <div key={i} className="flex flex-col gap-0.5" style={{ borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.15)" : undefined, paddingLeft: i > 0 ? "2rem" : undefined }}>
-                <span className="text-2xl font-display" style={{ color: "#60a5fa", letterSpacing: "-0.01em" }}>
+                <span className="text-4xl font-display text-white" style={{ letterSpacing: "-0.01em" }}>
                   {stat.value}
                 </span>
                 <span className="text-slate-400 text-xs font-semibold tracking-wide uppercase">{stat.label}</span>
@@ -454,7 +467,7 @@ function SplitSection() {
             <div className="space-y-4">
               <div className="relative overflow-hidden rounded-2xl h-44">
                 <img
-                  src="https://images.unsplash.com/photo-1566847438217-76e82d3f7ae9?w=600&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=600&q=80&auto=format&fit=crop"
                   alt="Яхта"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                   crossOrigin="anonymous"
@@ -462,7 +475,7 @@ function SplitSection() {
               </div>
               <div className="relative overflow-hidden rounded-2xl h-56">
                 <img
-                  src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&q=80&auto=format&fit=crop"
                   alt="Катер"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                   crossOrigin="anonymous"
@@ -472,7 +485,7 @@ function SplitSection() {
             <div className="space-y-4 mt-8">
               <div className="relative overflow-hidden rounded-2xl h-56">
                 <img
-                  src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1508553823590-1c68ebeaaea5?w=600&q=80&auto=format&fit=crop"
                   alt="Катамаран"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                   crossOrigin="anonymous"
