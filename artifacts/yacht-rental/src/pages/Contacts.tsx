@@ -161,7 +161,7 @@ export default function Contacts() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {!submitted ? (
             <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                 {/* Left Card */}
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
@@ -221,13 +221,11 @@ export default function Contacts() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={formInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.7, delay: 0.1 }}
-                  className="card-light rounded-2xl p-6 lg:p-10"
+                  className="card-light rounded-2xl p-6 lg:p-10 flex flex-col"
                 >
-                  <h2 className="text-3xl font-display text-slate-900 mb-2 opacity-0 select-none pointer-events-none">
-                    &nbsp;
-                  </h2>
-                  <p className="text-slate-500 text-sm mb-8 opacity-0 select-none pointer-events-none">
-                    &nbsp;
+                  <h2 className="text-3xl font-display text-slate-900 mb-2">ДЕТАЛИ ЗАЯВКИ</h2>
+                  <p className="text-slate-500 text-sm mb-8">
+                    Укажите параметры аренды и мы подберём лучший вариант
                   </p>
 
                   <div className="space-y-5">

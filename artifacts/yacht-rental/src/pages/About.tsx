@@ -98,8 +98,17 @@ export default function About() {
       </section>
 
       {/* Stats Banner */}
-      <section className="py-14 bg-blue-600">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1600&q=80&auto=format&fit=crop"
+            alt=""
+            className="w-full h-full object-cover"
+            crossOrigin="anonymous"
+          />
+          <div className="absolute inset-0 bg-blue-900/75" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
               { value: "2015", label: "Год основания" },
@@ -135,7 +144,7 @@ export default function About() {
             >
               <div className="relative overflow-hidden rounded-3xl h-96 lg:h-[480px]">
                 <img
-                  src="https://images.unsplash.com/photo-1566847438217-76e82d3f7ae9?w=800&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80&auto=format&fit=crop"
                   alt="История компании"
                   className="w-full h-full object-cover"
                   crossOrigin="anonymous"

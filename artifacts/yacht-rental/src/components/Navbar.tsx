@@ -13,11 +13,21 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
 
   useEffect(() => {
     setIsMobileOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const isHome = location === "/";
+  const transparent = isHome && !scrolled && !isMobileOpen;
 
   return (
     <>
@@ -25,7 +35,11 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm transition-all duration-500"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          transparent
+            ? "bg-transparent shadow-none"
+            : "bg-white/95 backdrop-blur-lg shadow-sm"
+        }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 py-3">
@@ -36,10 +50,14 @@ export default function Navbar() {
                   <Anchor className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <div className="font-display text-lg leading-none text-slate-900 transition-colors duration-300">
-                    NEVA<span className="text-blue-500">YACHT</span>
+                  <div className={`font-display text-lg leading-none transition-colors duration-300 ${
+                    transparent ? "text-white" : "text-slate-900"
+                  }`}>
+                    NEVA<span className="text-blue-400">YACHT</span>
                   </div>
-                  <div className="text-[9px] tracking-[0.18em] uppercase leading-none mt-0.5 text-slate-500 transition-colors duration-300">
+                  <div className={`text-[9px] tracking-[0.18em] uppercase leading-none mt-0.5 transition-colors duration-300 ${
+                    transparent ? "text-white/70" : "text-slate-500"
+                  }`}>
                     Санкт-Петербург
                   </div>
                 </div>
@@ -53,8 +71,10 @@ export default function Navbar() {
                   <motion.div
                     className={`relative px-4 py-2 text-sm font-semibold tracking-wide cursor-pointer transition-colors duration-200 ${
                       location === link.href
-                        ? "text-blue-600"
-                        : "text-slate-600 hover:text-slate-900"
+                        ? transparent ? "text-white" : "text-blue-600"
+                        : transparent
+                          ? "text-white/80 hover:text-white"
+                          : "text-slate-600 hover:text-slate-900"
                     }`}
                     whileHover={{ y: -1 }}
                   >
@@ -62,7 +82,9 @@ export default function Navbar() {
                     {location === link.href && (
                       <motion.div
                         layoutId="navbar-indicator"
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-600"
+                        className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full ${
+                          transparent ? "bg-white" : "bg-blue-600"
+                        }`}
                       />
                     )}
                   </motion.div>
@@ -76,7 +98,11 @@ export default function Navbar() {
                 <motion.button
                   whileHover={{ scale: 1.03, boxShadow: "0 0 24px rgba(37,99,235,0.35)" }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-700 to-blue-500 text-white text-sm font-bold tracking-wide shadow-md transition-all"
+                  className={`px-5 py-2.5 rounded-xl text-sm font-bold tracking-wide shadow-md transition-all ${
+                    transparent
+                      ? "bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30"
+                      : "bg-gradient-to-r from-blue-700 to-blue-500 text-white"
+                  }`}
                 >
                   Забронировать
                 </motion.button>
@@ -85,7 +111,7 @@ export default function Navbar() {
 
             {/* Mobile Toggle */}
             <button
-              className="lg:hidden p-2 transition-colors text-slate-700"
+              className={`lg:hidden p-2 transition-colors ${transparent ? "text-white" : "text-slate-700"}`}
               onClick={() => setIsMobileOpen(!isMobileOpen)}
             >
               {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
