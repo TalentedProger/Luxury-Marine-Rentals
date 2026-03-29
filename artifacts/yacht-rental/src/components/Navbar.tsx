@@ -17,7 +17,7 @@ export default function Navbar() {
   const [location] = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -26,6 +26,8 @@ export default function Navbar() {
     setIsMobileOpen(false);
   }, [location]);
 
+  const scrolled = isScrolled;
+
   return (
     <>
       <motion.header
@@ -33,27 +35,22 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "glass-dark shadow-[0_4px_32px_rgba(0,0,0,0.4)]"
-            : "bg-transparent"
+          scrolled ? "glass-dark" : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-18 py-4">
+          <div className="flex items-center justify-between h-16 py-3">
             {/* Logo */}
             <Link href="/">
-              <motion.div
-                className="flex items-center gap-3 cursor-pointer group"
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(14,165,233,0.4)]">
-                  <Anchor className="w-5 h-5 text-white" />
+              <motion.div className="flex items-center gap-3 cursor-pointer group" whileHover={{ scale: 1.02 }}>
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-md">
+                  <Anchor className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <div className="font-display text-xl text-white tracking-wider leading-none">
-                    NEVA<span className="text-sky-400">YACHT</span>
+                  <div className={`font-display text-lg leading-none transition-colors duration-300 ${scrolled ? "text-slate-900" : "text-white"}`}>
+                    NEVA<span className="text-blue-500">YACHT</span>
                   </div>
-                  <div className="text-[10px] text-slate-400 font-medium tracking-[0.2em] uppercase leading-none mt-0.5">
+                  <div className={`text-[9px] tracking-[0.18em] uppercase leading-none mt-0.5 transition-colors duration-300 ${scrolled ? "text-slate-500" : "text-slate-400"}`}>
                     Санкт-Петербург
                   </div>
                 </div>
@@ -61,13 +58,15 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-0.5">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href}>
                   <motion.div
                     className={`relative px-4 py-2 text-sm font-semibold tracking-wide cursor-pointer transition-colors duration-200 ${
                       location === link.href
-                        ? "text-sky-400"
+                        ? "text-blue-600"
+                        : scrolled
+                        ? "text-slate-600 hover:text-slate-900"
                         : "text-slate-300 hover:text-white"
                     }`}
                     whileHover={{ y: -1 }}
@@ -76,7 +75,7 @@ export default function Navbar() {
                     {location === link.href && (
                       <motion.div
                         layoutId="navbar-indicator"
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-sky-400"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-600"
                       />
                     )}
                   </motion.div>
@@ -88,16 +87,16 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-4">
               <a
                 href="tel:+78123334455"
-                className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors"
+                className={`flex items-center gap-2 text-sm font-semibold transition-colors duration-300 ${scrolled ? "text-slate-600 hover:text-slate-900" : "text-slate-300 hover:text-white"}`}
               >
-                <Phone className="w-4 h-4 text-sky-400" />
-                <span className="font-semibold">+7 (812) 333-44-55</span>
+                <Phone className="w-4 h-4 text-blue-500" />
+                +7 (812) 333-44-55
               </a>
               <Link href="/contacts">
                 <motion.button
-                  whileHover={{ scale: 1.03, boxShadow: "0 0 30px rgba(14,165,233,0.4)" }}
+                  whileHover={{ scale: 1.03, boxShadow: "0 0 24px rgba(37,99,235,0.35)" }}
                   whileTap={{ scale: 0.97 }}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white text-sm font-bold tracking-wide transition-all"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-700 to-blue-500 text-white text-sm font-bold tracking-wide shadow-md transition-all"
                 >
                   Забронировать
                 </motion.button>
@@ -106,7 +105,7 @@ export default function Navbar() {
 
             {/* Mobile Toggle */}
             <button
-              className="lg:hidden text-white p-2"
+              className={`lg:hidden p-2 transition-colors ${scrolled ? "text-slate-700" : "text-white"}`}
               onClick={() => setIsMobileOpen(!isMobileOpen)}
             >
               {isMobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -119,13 +118,13 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 glass-dark pt-20 px-6"
+            className="fixed inset-0 z-40 bg-white pt-20 px-6"
           >
-            <nav className="flex flex-col gap-2 mt-4">
+            <nav className="flex flex-col gap-1 mt-4">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -134,8 +133,8 @@ export default function Navbar() {
                   transition={{ delay: i * 0.07 }}
                 >
                   <Link href={link.href}>
-                    <div className={`py-4 text-xl font-bold border-b border-white/5 cursor-pointer transition-colors ${
-                      location === link.href ? "text-sky-400" : "text-slate-200"
+                    <div className={`py-4 text-xl font-bold border-b border-slate-100 cursor-pointer transition-colors ${
+                      location === link.href ? "text-blue-600" : "text-slate-800"
                     }`}>
                       {link.label}
                     </div>
@@ -148,8 +147,12 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
                 className="mt-6"
               >
+                <a href="tel:+78123334455" className="flex items-center gap-2 py-3 text-slate-600 font-semibold mb-4">
+                  <Phone className="w-4 h-4 text-blue-500" />
+                  +7 (812) 333-44-55
+                </a>
                 <Link href="/contacts">
-                  <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 text-white text-lg font-bold">
+                  <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-500 text-white text-lg font-bold shadow-lg">
                     Забронировать
                   </button>
                 </Link>

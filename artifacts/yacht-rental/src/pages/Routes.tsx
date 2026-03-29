@@ -152,66 +152,68 @@ function RouteCard({ route, index }: { route: typeof routes[0]; index: number })
       className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center"
     >
       {/* Image */}
-      <div className={`relative overflow-hidden rounded-3xl h-72 lg:h-96 ${!isEven ? "lg:order-last" : ""}`}>
+      <div className={`relative overflow-hidden rounded-3xl h-72 lg:h-96 shadow-xl ${!isEven ? "lg:order-last" : ""}`}>
         <motion.img
           src={route.image}
           alt={route.title}
           className="w-full h-full object-cover"
-          whileHover={{ scale: 1.08 }}
+          whileHover={{ scale: 1.07 }}
           transition={{ duration: 0.7 }}
+          crossOrigin="anonymous"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050d1a]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
 
         {/* Badges */}
         <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
           {route.tags.map(tag => (
-            <span key={tag} className="glass rounded-full px-3 py-1 text-xs font-bold text-sky-300">
+            <span key={tag} className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-blue-600">
               {tag}
             </span>
           ))}
         </div>
 
         {/* Rating */}
-        <div className="absolute top-4 right-4 glass rounded-full px-3 py-1 text-xs font-bold text-amber-400 flex items-center gap-1">
-          <Star className="w-3 h-3 fill-amber-400" />
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-amber-600 flex items-center gap-1">
+          <Star className="w-3 h-3 fill-amber-500" />
           {route.rating}
-          <span className="text-slate-400">({route.reviews})</span>
+          <span className="text-slate-500">({route.reviews})</span>
         </div>
       </div>
 
       {/* Content */}
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <span className="text-sky-400 text-xs font-bold tracking-widest uppercase">
+          <div className="w-6 h-px bg-blue-600" />
+          <span className="text-blue-600 text-xs font-bold tracking-widest uppercase">
             Маршрут {String(index + 1).padStart(2, "0")}
           </span>
         </div>
-        <h3 className="text-3xl lg:text-4xl font-display text-white mb-2">{route.title}</h3>
-        <p className="text-sky-300 text-base font-semibold mb-4">{route.subtitle}</p>
-        <p className="text-slate-400 text-sm leading-relaxed mb-6">{route.description}</p>
+        <h3 className="text-3xl lg:text-4xl font-display text-slate-900 mb-2">{route.title}</h3>
+        <p className="text-blue-600 text-base font-semibold mb-4">{route.subtitle}</p>
+        <p className="text-slate-500 text-sm leading-relaxed mb-6">{route.description}</p>
 
         {/* Highlights */}
         <div className="grid grid-cols-2 gap-2 mb-6">
           {route.highlights.map((h, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0" />
-              <span className="text-slate-300 text-xs font-medium">{h}</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
+              <span className="text-slate-600 text-xs font-medium">{h}</span>
             </div>
           ))}
         </div>
 
         {/* Meta */}
         <div className="flex items-center gap-6 mb-6 text-sm">
-          <div className="flex items-center gap-2 text-slate-400">
-            <Clock className="w-4 h-4 text-sky-400" />
+          <div className="flex items-center gap-2 text-slate-500">
+            <Clock className="w-4 h-4 text-blue-500" />
             {route.duration}
           </div>
-          <div className="flex items-center gap-2 text-slate-400">
-            <Users className="w-4 h-4 text-sky-400" />
+          <div className="flex items-center gap-2 text-slate-500">
+            <Users className="w-4 h-4 text-blue-500" />
             {route.capacity}
           </div>
-          <div className="flex items-center gap-2 text-slate-400">
-            <MapPin className="w-4 h-4 text-sky-400" />
+          <div className="flex items-center gap-2 text-slate-500">
+            <MapPin className="w-4 h-4 text-blue-500" />
             {route.distance}
           </div>
         </div>
@@ -219,13 +221,13 @@ function RouteCard({ route, index }: { route: typeof routes[0]; index: number })
         {/* Price + CTA */}
         <div className="flex items-center gap-4 flex-wrap">
           <div>
-            <span className="text-3xl font-display text-white">{route.price}</span>
+            <span className="text-3xl font-display text-slate-900">{route.price}</span>
           </div>
           <Link href="/contacts">
             <motion.button
-              whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(14,165,233,0.4)" }}
+              whileHover={{ scale: 1.04, boxShadow: "0 0 28px rgba(37,99,235,0.35)" }}
               whileTap={{ scale: 0.97 }}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white font-bold text-sm flex items-center gap-2 group"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-700 to-blue-500 text-white font-bold text-sm flex items-center gap-2 group shadow-md"
             >
               Забронировать
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -242,31 +244,34 @@ export default function Routes() {
   const inView = useInView(headerRef, { once: true });
 
   return (
-    <main className="min-h-screen bg-[#050d1a]">
+    <main className="min-h-screen bg-white">
       {/* Header */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1508553823590-1c68ebeaaea5?w=1600&q=80"
+            src="https://images.unsplash.com/photo-1508553823590-1c68ebeaaea5?w=1600&q=80&auto=format&fit=crop"
             alt=""
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover opacity-20"
+            crossOrigin="anonymous"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#050d1a]/80 via-[#050d1a]/50 to-[#050d1a]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/50 to-slate-900" />
         </div>
 
         <div ref={headerRef} className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <motion.span
+          <motion.div
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
-            className="text-sky-400 text-xs font-bold tracking-widest uppercase block mb-4"
+            className="flex items-center justify-center gap-2 mb-4"
           >
-            Морские маршруты
-          </motion.span>
+            <div className="w-6 h-px bg-blue-400" />
+            <span className="text-blue-400 text-xs font-bold tracking-widest uppercase">Морские маршруты</span>
+            <div className="w-6 h-px bg-blue-400" />
+          </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-display text-white mb-6"
+            className="text-5xl lg:text-7xl font-display text-white mb-5"
           >
             МАРШРУТЫ
             <br />
@@ -276,7 +281,7 @@ export default function Routes() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
-            className="text-slate-400 text-lg max-w-2xl mx-auto"
+            className="text-slate-300 text-lg max-w-2xl mx-auto"
           >
             6 уникальных маршрутов по акватории Санкт-Петербурга и Финского залива. Каждый рейс — это незабываемое приключение.
           </motion.p>
@@ -284,8 +289,8 @@ export default function Routes() {
       </section>
 
       {/* Routes List */}
-      <section className="py-12 lg:py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-24 lg:space-y-32">
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-20 lg:space-y-28">
           {routes.map((route, i) => (
             <RouteCard key={route.id} route={route} index={i} />
           ))}
