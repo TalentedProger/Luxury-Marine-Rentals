@@ -69,6 +69,7 @@ function VesselCard({ vessel, index }: { vessel: Vessel; index: number }) {
               whileHover={{ scale: 1.07 }}
               transition={{ duration: 0.7 }}
               crossOrigin="anonymous"
+              loading="lazy"
             />
             <div className="absolute top-4 left-4 flex gap-2">
               <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-blue-600">
@@ -171,18 +172,19 @@ export default function Fleet() {
   return (
     <main className="min-h-screen bg-white">
       {/* Page Header */}
-      <section className="relative pt-36 pb-24 overflow-hidden bg-slate-900">
+      <section className="relative pt-40 pb-28 overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1600&q=80&auto=format&fit=crop"
+            src="/images/fon_1.jpg"
             alt=""
-            className="w-full h-full object-cover opacity-30"
-            crossOrigin="anonymous"
+            className="w-full h-full object-cover opacity-40"
+            fetchPriority="high"
+            decoding="sync"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900" />
         </div>
 
-        <div ref={headerRef} className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <div ref={headerRef} className="relative max-w-[88rem] mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -196,7 +198,7 @@ export default function Fleet() {
             initial={{ opacity: 0, y: 30 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-display text-white mb-5"
+            className="text-4xl sm:text-5xl lg:text-7xl font-display text-white mb-5 break-words"
           >
             НАШ <span className="text-gradient-blue">ФЛОТ</span>
           </motion.h1>
@@ -214,7 +216,7 @@ export default function Fleet() {
       {/* Filter Bar */}
       <section className="sticky top-16 z-30 bg-white/95 backdrop-blur-lg border-b border-slate-100 shadow-sm">
         {/* Category row */}
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="flex items-center gap-3 py-3 overflow-x-auto">
             <Filter className="w-4 h-4 text-slate-400 shrink-0" />
             <div className="flex gap-2 flex-1">
@@ -368,7 +370,7 @@ export default function Fleet() {
 
       {/* Fleet Grid */}
       <section className="py-12 lg:py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <motion.p
             key={`${activeCategory}-${maxPrice}-${minCapacity}-${sortBy}`}
             initial={{ opacity: 0 }}

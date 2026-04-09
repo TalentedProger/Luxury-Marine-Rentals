@@ -120,7 +120,7 @@ export default function VesselDetail() {
       </section>
 
       {/* Thumbnail Strip */}
-      <div className="relative z-10 flex gap-3 px-6 lg:px-8 -mt-4 pb-6 overflow-x-auto scrollbar-none max-w-7xl mx-auto">
+      <div className="relative z-10 flex gap-3 px-6 lg:px-8 -mt-4 pb-6 overflow-x-auto scrollbar-none max-w-[88rem] mx-auto">
         {allImages.map((img, i) => (
           <motion.button
             key={i}
@@ -130,14 +130,14 @@ export default function VesselDetail() {
               i === activeImage ? "border-sky-400" : "border-transparent opacity-60"
             }`}
           >
-            <img src={img} alt="" className="w-full h-full object-cover" />
+            <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
           </motion.button>
         ))}
       </div>
 
       {/* Main Content */}
       <section ref={infoRef} className="py-8 lg:py-12">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
             {/* Left column: Info */}
@@ -399,7 +399,7 @@ export default function VesselDetail() {
       {/* Related */}
       {related.length > 0 && (
         <section className="py-16 lg:py-20 border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
             <h2 className="text-3xl lg:text-4xl font-display text-white mb-10">
               ПОХОЖИЕ <span className="text-gradient-blue">СУДА</span>
             </h2>
@@ -415,6 +415,8 @@ export default function VesselDetail() {
                         src={v.heroImage}
                         alt={v.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] to-transparent" />
                     </div>

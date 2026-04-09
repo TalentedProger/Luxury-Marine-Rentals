@@ -8,28 +8,28 @@ const team = [
     name: "Максим Петров",
     role: "Генеральный директор & Капитан",
     years: "15 лет опыта",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop&crop=face",
+    img: "/images/team-1.jpg",
     bio: "Опытный мореплаватель, основавший NevaYacht в 2015 году. Прошёл путь от простого матроса до капитана класса А.",
   },
   {
     name: "Анна Соколова",
     role: "Директор по сервису",
     years: "10 лет опыта",
-    img: "https://images.unsplash.com/photo-1494790108755-2616b612b647?w=400&q=80&auto=format&fit=crop&crop=face",
+    img: "/images/team-2.jpg",
     bio: "Отвечает за безупречный сервис и счастье каждого клиента. Создала систему стандартов качества NevaYacht.",
   },
   {
     name: "Игорь Волков",
     role: "Главный механик",
     years: "20 лет опыта",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format&fit=crop&crop=face",
+    img: "/images/team-3.jpg",
     bio: "Поддерживает весь флот в идеальном техническом состоянии. Сертифицированный инженер Volvo Marine и Mercury.",
   },
   {
     name: "Дарья Новикова",
     role: "Event Manager",
     years: "8 лет опыта",
-    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80&auto=format&fit=crop&crop=face",
+    img: "/images/team-4.jpg",
     bio: "Организует корпоративные мероприятия, свадьбы и праздники на воде. Каждое событие — произведение искусства.",
   },
 ];
@@ -52,18 +52,19 @@ export default function About() {
   return (
     <main className="min-h-screen bg-white overflow-hidden">
       {/* Hero */}
-      <section className="relative pt-32 pb-20 bg-slate-900">
+      <section className="relative pt-40 pb-28 bg-slate-900 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1566847438217-76e82d3f7ae9?w=1600&q=80&auto=format&fit=crop"
+            src="/images/fon_1.jpg"
             alt=""
-            className="w-full h-full object-cover opacity-15"
-            crossOrigin="anonymous"
+            className="w-full h-full object-cover opacity-40"
+            fetchPriority="high"
+            decoding="sync"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-900" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900" />
         </div>
 
-        <div ref={headerRef} className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div ref={headerRef} className="relative max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
             <motion.div
               initial={{ opacity: 0 }}
@@ -77,7 +78,7 @@ export default function About() {
               initial={{ opacity: 0, y: 32 }}
               animate={headerInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 }}
-              className="text-5xl lg:text-7xl font-display text-white mb-6"
+              className="text-4xl sm:text-5xl lg:text-7xl font-display text-white mb-6 break-words"
             >
               МЫ СОЗДАЁМ
               <br />
@@ -98,17 +99,18 @@ export default function About() {
       </section>
 
       {/* Stats Banner */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="relative py-20 overflow-hidden bg-[#05101f] sm:bg-[#050d1a]">
+        <div className="absolute inset-0 sm:hidden">
           <img
-            src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1600&q=80&auto=format&fit=crop"
+            src="/images/boat-3.jpg"
             alt=""
             className="w-full h-full object-cover"
-            crossOrigin="anonymous"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-blue-900/75" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="relative max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
               { value: "2015", label: "Год основания" },
@@ -133,7 +135,7 @@ export default function About() {
 
       {/* Story */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -144,10 +146,11 @@ export default function About() {
             >
               <div className="relative overflow-hidden rounded-3xl h-96 lg:h-[480px]">
                 <img
-                  src="https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80&auto=format&fit=crop"
+                  src="/images/boat-4.jpg"
                   alt="История компании"
                   className="w-full h-full object-cover"
-                  crossOrigin="anonymous"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <motion.div
@@ -155,11 +158,11 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="absolute -bottom-6 -right-6 bg-blue-600 rounded-2xl p-6 max-w-xs shadow-xl"
+                className="absolute -bottom-6 -right-6 bg-blue-600 rounded-2xl p-4 sm:p-6 max-w-[11rem] sm:max-w-xs shadow-xl"
               >
-                <div className="text-4xl font-display text-white mb-1">10 лет</div>
-                <div className="text-white font-bold mb-1">На рынке аренды яхт</div>
-                <div className="text-blue-200 text-sm">С 2015 по 2025</div>
+                <div className="text-2xl sm:text-4xl font-display text-white mb-0.5 sm:mb-1">10 лет</div>
+                <div className="text-white font-bold text-sm sm:text-base mb-0.5 sm:mb-1 leading-snug">На рынке аренды яхт</div>
+                <div className="text-blue-200 text-xs sm:text-sm">С 2015 по 2025</div>
               </motion.div>
             </motion.div>
 
@@ -225,7 +228,7 @@ export default function About() {
 
       {/* Values */}
       <section ref={valuesRef} className="py-20 lg:py-28 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="text-center mb-14">
             <motion.div
               initial={{ opacity: 0 }}
@@ -268,7 +271,7 @@ export default function About() {
 
       {/* Team */}
       <section ref={teamRef} className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="text-center mb-14">
             <motion.div
               initial={{ opacity: 0 }}
@@ -305,6 +308,8 @@ export default function About() {
                     alt={member.name}
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
                     crossOrigin="anonymous"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="card-light rounded-2xl p-4">

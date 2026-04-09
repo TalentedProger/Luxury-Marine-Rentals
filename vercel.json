@@ -1,0 +1,41 @@
+{
+  "buildCommand": "cd artifacts/yacht-rental && pnpm install --ignore-scripts && pnpm run build",
+  "outputDirectory": "artifacts/yacht-rental/dist/public",
+  "installCommand": "pnpm install --ignore-scripts",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/((?!assets|images|favicon\\.svg|robots\\.txt|sitemap\\.xml|opengraph\\.jpg).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.svg",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}

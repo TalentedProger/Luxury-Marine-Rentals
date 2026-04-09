@@ -14,8 +14,8 @@ const routes = [
     price: "от 25 000 ₽",
     rating: 4.9,
     reviews: 234,
-    image: "https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1200&q=80",
-    tags: ["Исторический", "Популярный"],
+    image: "/images/boat-3.jpg",
+    tags: ["История", "Экскурсия"],
     description:
       "Уникальное путешествие к легендарным фортам Финского залива. Вы увидите форт Александр I, Константин, Зверев и другие грандиозные морские крепости. Профессиональный гид расскажет историю оборонительных сооружений.",
     highlights: [
@@ -36,8 +36,8 @@ const routes = [
     price: "от 18 000 ₽",
     rating: 4.8,
     reviews: 189,
-    image: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1200&q=80",
-    tags: ["Культурный", "Семейный"],
+    image: "/images/boat-4.jpg",
+    tags: ["Культура", "Семейный"],
     description:
       "Подплывите к Петергофу так, как это делали гости Петра Великого. Вид на дворцовый комплекс и фонтаны с моря — зрелище, которое невозможно забыть. Гармоничное сочетание истории и природы.",
     highlights: [
@@ -58,8 +58,8 @@ const routes = [
     price: "от 45 000 ₽",
     rating: 4.9,
     reviews: 97,
-    image: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=1200&q=80",
-    tags: ["Приключение", "Природа"],
+    image: "/images/boat-5.jpg",
+    tags: ["Природа", "Приключение"],
     description:
       "Исследуйте нетронутые острова Финского залива: Мощный, Сескар, Малый и Большой Тютерс. Купание в открытом море, рыбалка, пикник на дикой природе — лучшее лето в вашей жизни.",
     highlights: [
@@ -80,7 +80,7 @@ const routes = [
     price: "от 12 000 ₽",
     rating: 5.0,
     reviews: 76,
-    image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&q=80",
+    image: "/images/boat-1.jpg",
     tags: ["Романтика", "Эксклюзив"],
     description:
       "Ранний выход в 5:00. Встреча белой ночи или рассвета над акваторией. Чай, кофе и лёгкий завтрак на борту. Разводные мосты, пустой город, тишина воды — абсолютная романтика.",
@@ -102,7 +102,7 @@ const routes = [
     price: "от 20 000 ₽",
     rating: 4.9,
     reviews: 312,
-    image: "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1200&q=80",
+    image: "/images/boat-2.jpg",
     tags: ["Вечерний", "Городской"],
     description:
       "Вечерний круиз по Неве и каналам Санкт-Петербурга. Подсвеченные дворцы, мосты и набережные создают сказочную атмосферу. Разводка мостов в исполнении природы — зрелище на всю жизнь.",
@@ -124,7 +124,7 @@ const routes = [
     price: "от 35 000 ₽",
     rating: 4.7,
     reviews: 54,
-    image: "https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1200&q=80",
+    image: "/images/boat-6.jpg",
     tags: ["Рыбалка", "Актив"],
     description:
       "Морская рыбалка с профессиональным рыбным инструктором. Снасти, приманки и оборудование предоставляются. Треска, камбала, угорь — богатые уловы Финского залива. Улов можно приготовить на борту.",
@@ -246,18 +246,19 @@ export default function Routes() {
   return (
     <main className="min-h-screen bg-white">
       {/* Header */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-slate-900">
+      <section className="relative pt-40 pb-28 overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1508553823590-1c68ebeaaea5?w=1600&q=80&auto=format&fit=crop"
+            src="/images/fon_1.jpg"
             alt=""
-            className="w-full h-full object-cover opacity-20"
-            crossOrigin="anonymous"
+            className="w-full h-full object-cover opacity-40"
+            fetchPriority="high"
+            decoding="sync"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/50 to-slate-900" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900" />
         </div>
 
-        <div ref={headerRef} className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <div ref={headerRef} className="relative max-w-[88rem] mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
@@ -271,7 +272,7 @@ export default function Routes() {
             initial={{ opacity: 0, y: 32 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-display text-white mb-5"
+            className="text-4xl sm:text-5xl lg:text-7xl font-display text-white mb-5 break-words"
           >
             МАРШРУТЫ
             <br />
@@ -290,7 +291,7 @@ export default function Routes() {
 
       {/* Routes List */}
       <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-20 lg:space-y-28">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8 space-y-20 lg:space-y-28">
           {routes.map((route, i) => (
             <RouteCard key={route.id} route={route} index={i} />
           ))}

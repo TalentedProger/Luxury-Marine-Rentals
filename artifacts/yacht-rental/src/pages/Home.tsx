@@ -21,15 +21,16 @@ function HeroSection() {
     <section
       ref={heroRef}
       className="relative w-full overflow-hidden flex items-center"
-      style={{ height: "100svh", minHeight: "600px", maxHeight: "900px" }}
+      style={{ height: "100svh", minHeight: "650px", maxHeight: "900px" }}
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=1920&q=90&auto=format&fit=crop"
+          src="/images/boat-1.jpg"
           alt="Hero"
           className="absolute inset-0 w-full h-full object-cover"
-          crossOrigin="anonymous"
+          fetchPriority="high"
+          decoding="sync"
         />
         <video
           ref={videoRef}
@@ -49,7 +50,7 @@ function HeroSection() {
       {/* Content */}
       <motion.div
         style={{ opacity: heroOpacity, y: heroY }}
-        className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full"
+        className="relative z-10 max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-0 md:pb-0"
       >
         <div className="max-w-3xl">
           {/* Badge */}
@@ -57,22 +58,22 @@ function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6"
+            className="inline-flex items-center gap-2 glass rounded-full px-3 py-1.5 mb-6 sm:mb-4"
           >
-            <div className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-            <span className="text-sky-300 text-sm font-semibold tracking-widest uppercase">
+            <div className="w-2 h-2 rounded-full bg-sky-400 animate-pulse shrink-0" />
+            <span className="text-sky-300 text-xs sm:text-sm font-semibold tracking-widest uppercase">
               Санкт-Петербург · С 2015 года
             </span>
           </motion.div>
 
           {/* Title */}
-          <div className="mb-5 overflow-hidden">
+          <div className="mb-4 overflow-hidden">
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.4 }}
               className="relative font-display leading-[0.88] select-none"
-              style={{ fontSize: "clamp(56px, 9vw, 118px)", opacity: 0.82 }}
+              style={{ fontSize: "clamp(44px, 11vw, 100px)", opacity: 0.82 }}
             >
               <span
                 className="block"
@@ -130,7 +131,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.1 }}
-            className="text-slate-300 text-base lg:text-lg leading-relaxed max-w-md mb-8 font-medium"
+            className="text-slate-300 text-base sm:text-base lg:text-lg leading-relaxed max-w-md mb-6 sm:mb-5 font-medium"
           >
             Откройте красоту Финского залива и Невской акватории с нашим премиальным флотом из 20+ судов.
           </motion.p>
@@ -140,13 +141,13 @@ function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.25 }}
-            className="flex flex-wrap gap-3"
+            className="flex flex-row flex-wrap gap-3 sm:gap-3 mb-7 sm:mb-5"
           >
             <Link href="/fleet">
               <motion.button
                 whileHover={{ scale: 1.04, boxShadow: "0 0 36px rgba(37,99,235,0.55)" }}
                 whileTap={{ scale: 0.97 }}
-                className="group flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold text-sm tracking-wide shadow-lg transition-all"
+                className="group flex items-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold text-sm tracking-wide shadow-lg transition-all"
               >
                 Выбрать яхту
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -156,7 +157,7 @@ function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 px-7 py-3.5 rounded-xl glass text-white font-bold text-sm border border-white/15 hover:border-white/30 transition-all"
+                className="flex items-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl glass text-white font-bold text-sm border border-white/15 hover:border-white/30 transition-all"
               >
                 Связаться с нами
               </motion.button>
@@ -168,7 +169,7 @@ function HeroSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.45 }}
-            className="flex flex-wrap gap-x-8 gap-y-4 mt-12"
+            className="grid grid-cols-2 gap-x-4 gap-y-3 mt-0 sm:grid-cols-4 sm:gap-x-6 md:flex md:flex-wrap md:gap-x-8 md:gap-y-4"
           >
             {[
               { value: "20+", label: "Судов в флоте" },
@@ -176,11 +177,14 @@ function HeroSection() {
               { value: "10 лет", label: "На рынке" },
               { value: "4.9★", label: "Средний рейтинг" },
             ].map((stat, i) => (
-              <div key={i} className="flex flex-col gap-0.5" style={{ borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.15)" : undefined, paddingLeft: i > 0 ? "2rem" : undefined }}>
-                <span className="text-4xl font-display text-white" style={{ letterSpacing: "-0.01em" }}>
+              <div
+                key={i}
+                className={`flex flex-col gap-0.5${i > 0 ? " md:border-l md:border-white/15 md:pl-8" : ""}`}
+              >
+                <span className="text-2xl sm:text-3xl md:text-3xl font-display text-white" style={{ letterSpacing: "-0.01em" }}>
                   {stat.value}
                 </span>
-                <span className="text-slate-400 text-xs font-semibold tracking-wide uppercase">{stat.label}</span>
+                <span className="text-slate-400 text-[10px] sm:text-xs font-semibold tracking-wide uppercase">{stat.label}</span>
               </div>
             ))}
           </motion.div>
@@ -192,7 +196,7 @@ function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.0 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-1.5"
       >
         <span className="text-slate-400 text-[10px] tracking-widest uppercase font-semibold">Листай вниз</span>
         <motion.div animate={{ y: [0, 7, 0] }} transition={{ repeat: Infinity, duration: 1.8 }}>
@@ -241,7 +245,7 @@ function ServicesSection() {
 
   return (
     <section ref={ref} className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-12 lg:gap-20 items-start mb-16 lg:mb-20">
           <div>
@@ -340,7 +344,7 @@ function FleetPreview() {
 
   return (
     <section ref={ref} className="py-20 lg:py-28 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-end justify-between mb-12 gap-8 flex-wrap">
           <div>
@@ -455,7 +459,7 @@ function SplitSection() {
 
   return (
     <section ref={ref} className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image grid */}
           <motion.div
@@ -467,28 +471,31 @@ function SplitSection() {
             <div className="space-y-4">
               <div className="relative overflow-hidden rounded-2xl h-44">
                 <img
-                  src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=600&q=80&auto=format&fit=crop"
+                  src="/images/boat-3.jpg"
                   alt="Яхта"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                  crossOrigin="anonymous"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="relative overflow-hidden rounded-2xl h-56">
                 <img
-                  src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&q=80&auto=format&fit=crop"
+                  src="/images/boat-1.jpg"
                   alt="Катер"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                  crossOrigin="anonymous"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
             <div className="space-y-4 mt-8">
               <div className="relative overflow-hidden rounded-2xl h-56">
                 <img
-                  src="https://images.unsplash.com/photo-1508553823590-1c68ebeaaea5?w=600&q=80&auto=format&fit=crop"
+                  src="/images/boat-6.jpg"
                   alt="Катамаран"
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                  crossOrigin="anonymous"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="rounded-2xl bg-blue-600 p-6 text-center">
@@ -575,28 +582,28 @@ function RoutesSection() {
       title: "Форты Кронштадта",
       duration: "4–6 часов",
       price: "от 25 000 ₽",
-      img: "https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=800&q=80&auto=format&fit=crop",
+      img: "/images/boat-3.jpg",
       tag: "Популярный",
     },
     {
       title: "Петергоф с моря",
       duration: "3 часа",
       price: "от 18 000 ₽",
-      img: "https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80&auto=format&fit=crop",
+      img: "/images/boat-4.jpg",
       tag: "Исторический",
     },
     {
       title: "Острова Финского залива",
       duration: "6–8 часов",
       price: "от 45 000 ₽",
-      img: "https://images.unsplash.com/photo-1508553823590-1c68ebeaaea5?w=800&q=80&auto=format&fit=crop",
+      img: "/images/boat-6.jpg",
       tag: "Приключение",
     },
   ];
 
   return (
     <section ref={ref} className="py-20 lg:py-28 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
         <div className="text-center mb-14">
           <motion.div
             initial={{ opacity: 0 }}
@@ -621,39 +628,40 @@ function RoutesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {routes.map((route, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.65, delay: 0.12 * i }}
-              whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-500"
-            >
-              <div className="relative h-80">
-                <motion.img
-                  src={route.img}
-                  alt={route.title}
-                  className="w-full h-full object-cover"
-                  whileHover={{ scale: 1.07 }}
-                  transition={{ duration: 0.8 }}
-                  crossOrigin="anonymous"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-blue-600">
-                  {route.tag}
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-white font-display text-2xl mb-2">{route.title}</h3>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-slate-300 text-sm">
-                      <Clock className="w-4 h-4" />
-                      {route.duration}
+            <Link key={i} href="/routes">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.65, delay: 0.12 * i }}
+                whileHover={{ y: -6 }}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-500"
+              >
+                <div className="relative h-80">
+                  <motion.img
+                    src={route.img}
+                    alt={route.title}
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.07 }}
+                    transition={{ duration: 0.8 }}
+                    crossOrigin="anonymous"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent" />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-blue-600">
+                    {route.tag}
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-white font-display text-2xl mb-2">{route.title}</h3>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-slate-300 text-sm">
+                        <Clock className="w-4 h-4" />
+                        {route.duration}
+                      </div>
+                      <span className="text-white font-bold bg-blue-600 px-3 py-1 rounded-full text-sm">{route.price}</span>
                     </div>
-                    <span className="text-white font-bold bg-blue-600 px-3 py-1 rounded-full text-sm">{route.price}</span>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
 
@@ -689,27 +697,27 @@ function TestimonialsSection() {
       role: "Постоянный клиент",
       text: "Арендовали Princess V40 на корпоратив. Всё было на высшем уровне — от встречи до самой прогулки. Экипаж профессиональный, яхта роскошная. Обязательно вернёмся!",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80&auto=format&fit=crop&crop=face",
+      avatar: "/images/team-1.jpg",
     },
     {
       name: "Мария В.",
       role: "День рождения",
       text: "Заказывали романтическую прогулку для мужа. Команда NevaYacht создала волшебную атмосферу. Шампанское, закаты над заливом, форты Кронштадта — незабываемо!",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b647?w=100&q=80&auto=format&fit=crop&crop=face",
+      avatar: "/images/team-2.jpg",
     },
     {
       name: "Дмитрий Р.",
       role: "Свадебная прогулка",
       text: "Провели часть свадьбы на Sunseeker Predator. Гости были в восторге! Всё организовано идеально, оформление, фотозона, шеф-повар. Это был лучший день в жизни.",
       rating: 5,
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face",
+      avatar: "/images/team-3.jpg",
     },
   ];
 
   return (
     <section ref={ref} className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
         <div className="text-center mb-14">
           <motion.div
             initial={{ opacity: 0 }}
@@ -754,6 +762,8 @@ function TestimonialsSection() {
                   alt={t.name}
                   className="w-10 h-10 rounded-full object-cover border-2 border-blue-100"
                   crossOrigin="anonymous"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div>
                   <div className="text-slate-900 font-bold text-sm">{t.name}</div>
@@ -777,10 +787,11 @@ function CTASection() {
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1600&q=80&auto=format&fit=crop"
+          src="/images/boat-3.jpg"
           alt="Background"
           className="w-full h-full object-cover"
-          crossOrigin="anonymous"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/88 via-slate-900/70 to-slate-900/88" />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-transparent to-slate-900/70" />

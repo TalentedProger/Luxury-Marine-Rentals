@@ -25,18 +25,19 @@ export default function Contacts() {
   return (
     <main className="min-h-screen bg-white overflow-hidden">
       {/* Header */}
-      <section className="relative pt-32 pb-20 bg-slate-900">
+      <section className="relative pt-40 pb-28 bg-slate-900 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1600&q=80&auto=format&fit=crop"
+            src="/images/fon_1.jpg"
             alt=""
-            className="w-full h-full object-cover opacity-15"
-            crossOrigin="anonymous"
+            className="w-full h-full object-cover opacity-40"
+            fetchPriority="high"
+            decoding="sync"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/40 to-slate-900" />
         </div>
 
-        <div ref={headerRef} className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <div ref={headerRef} className="relative max-w-[88rem] mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0 }}
             animate={headerInView ? { opacity: 1 } : {}}
@@ -50,7 +51,7 @@ export default function Contacts() {
             initial={{ opacity: 0, y: 32 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-display text-white mb-5"
+            className="text-4xl sm:text-5xl lg:text-7xl font-display text-white mb-5 break-words"
           >
             ДАВАЙТЕ
             <br />
@@ -69,7 +70,7 @@ export default function Contacts() {
 
       {/* Section 1: Yacht image + Contact Info */}
       <section ref={infoRef} className="py-16 lg:py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
             {/* Yacht image */}
             <motion.div
@@ -79,10 +80,11 @@ export default function Contacts() {
               className="relative overflow-hidden rounded-3xl min-h-[400px] lg:min-h-0 shadow-xl"
             >
               <img
-                src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1200&q=85&auto=format&fit=crop"
-                alt="Элегантная яхта"
-                className="absolute inset-0 w-full h-full object-cover"
-                crossOrigin="anonymous"
+              src="/images/boat-3.jpg"
+              alt="Элегантная яхта"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
@@ -158,7 +160,7 @@ export default function Contacts() {
 
       {/* Section 2: Split Form */}
       <section ref={formRef} className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           {!submitted ? (
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
