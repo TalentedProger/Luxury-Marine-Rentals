@@ -158,11 +158,11 @@ export default function About() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="absolute -bottom-6 -right-6 bg-blue-600 rounded-2xl p-4 sm:p-6 max-w-[11rem] sm:max-w-xs shadow-xl"
+                className="absolute -bottom-6 -right-6 bg-blue-600 rounded-2xl p-3 sm:p-6 max-w-[8.5rem] sm:max-w-xs shadow-xl"
               >
-                <div className="text-2xl sm:text-4xl font-display text-white mb-0.5 sm:mb-1">10 лет</div>
-                <div className="text-white font-bold text-sm sm:text-base mb-0.5 sm:mb-1 leading-snug">На рынке аренды яхт</div>
-                <div className="text-blue-200 text-xs sm:text-sm">С 2015 по 2025</div>
+                <div className="text-xl sm:text-4xl font-display text-white mb-0.5 sm:mb-1">10 лет</div>
+                <div className="text-white font-bold text-xs sm:text-base mb-0.5 sm:mb-1 leading-snug">На рынке аренды яхт</div>
+                <div className="text-blue-200 text-[10px] sm:text-sm">С 2015 по 2025</div>
               </motion.div>
             </motion.div>
 

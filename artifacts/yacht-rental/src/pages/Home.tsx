@@ -20,8 +20,8 @@ function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full overflow-hidden flex items-center"
-      style={{ height: "100svh", minHeight: "650px", maxHeight: "900px" }}
+      className="relative w-full overflow-hidden flex items-center min-h-[780px] sm:min-h-[650px]"
+      style={{ height: "100svh", maxHeight: "900px" }}
     >
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
@@ -813,12 +813,12 @@ function CTASection() {
           <p className="text-slate-300 text-lg leading-relaxed mb-10 max-w-lg mx-auto">
             Забронируйте судно прямо сейчас и получите незабываемые впечатления от Санкт-Петербурга с воды.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/fleet">
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(37,99,235,0.5)" }}
                 whileTap={{ scale: 0.97 }}
-                className="px-10 py-4 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-500 text-white font-bold text-base tracking-wide shadow-xl"
+                className="w-full px-10 py-4 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-500 text-white font-bold text-base tracking-wide shadow-xl"
               >
                 Выбрать яхту
               </motion.button>
@@ -827,7 +827,7 @@ function CTASection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-10 py-4 rounded-2xl glass border border-white/15 hover:border-white/30 text-white font-bold text-base"
+                className="w-full px-10 py-4 rounded-2xl glass border border-white/15 hover:border-white/30 text-white font-bold text-base"
               >
                 Связаться с нами
               </motion.button>

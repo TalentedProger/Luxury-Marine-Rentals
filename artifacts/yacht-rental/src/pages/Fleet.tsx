@@ -71,7 +71,7 @@ function VesselCard({ vessel, index }: { vessel: Vessel; index: number }) {
               crossOrigin="anonymous"
               loading="lazy"
             />
-            <div className="absolute top-4 left-4 flex gap-2">
+            <div className="absolute top-4 left-4 flex flex-col gap-2">
               <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold text-blue-600">
                 {vessel.categoryLabel}
               </div>
@@ -218,24 +218,6 @@ export default function Fleet() {
         {/* Category row */}
         <div className="max-w-[88rem] mx-auto px-6 lg:px-8">
           <div className="flex items-center gap-3 py-3 overflow-x-auto">
-            <Filter className="w-4 h-4 text-slate-400 shrink-0" />
-            <div className="flex gap-2 flex-1">
-              {categories.map((cat) => (
-                <motion.button
-                  key={cat.value}
-                  onClick={() => setActiveCategory(cat.value)}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
-                  className={`px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${
-                    activeCategory === cat.value
-                      ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-md"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                  }`}
-                >
-                  {cat.label}
-                </motion.button>
-              ))}
-            </div>
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all border shrink-0 ${
@@ -253,6 +235,23 @@ export default function Fleet() {
               )}
               {showAdvanced ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
+            <div className="flex gap-2 flex-1">
+              {categories.map((cat) => (
+                <motion.button
+                  key={cat.value}
+                  onClick={() => setActiveCategory(cat.value)}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 ${
+                    activeCategory === cat.value
+                      ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-md"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {cat.label}
+                </motion.button>
+              ))}
+            </div>
           </div>
 
           {/* Advanced filters */}

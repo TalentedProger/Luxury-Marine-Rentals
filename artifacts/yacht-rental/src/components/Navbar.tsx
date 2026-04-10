@@ -128,7 +128,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white pt-20 flex flex-col"
+            className="fixed inset-0 z-40 bg-white pt-20 flex flex-col overflow-y-auto"
           >
             {/* Nav links */}
             <nav className="flex flex-col gap-1 px-6 mt-4">
@@ -221,15 +221,12 @@ export default function Navbar() {
               </div>
             </motion.div>
 
-            {/* Spacer */}
-            <div className="flex-1" />
-
-            {/* Book button pinned to bottom */}
+            {/* Book button */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="px-6 pb-8"
+              className="px-6 mt-6 pb-8"
             >
               <Link href="/contacts">
                 <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-500 text-white text-lg font-bold shadow-lg">
