@@ -1,7 +1,7 @@
 {
-  "buildCommand": "cd artifacts/yacht-rental && pnpm install --ignore-scripts && pnpm run build",
+  "buildCommand": "pnpm --filter @workspace/yacht-rental run build",
   "outputDirectory": "artifacts/yacht-rental/dist/public",
-  "installCommand": "pnpm install --ignore-scripts",
+  "installCommand": "pnpm install --frozen-lockfile --ignore-scripts",
   "framework": null,
   "rewrites": [
     {
