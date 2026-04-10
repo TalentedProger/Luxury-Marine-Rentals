@@ -244,14 +244,14 @@ export default function Contacts() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
+                      <div className="min-w-0">
                         <label className={labelClass}>Дата</label>
                         <input
                           type="date"
-                          className={fieldClass}
+                          className={`${fieldClass} max-w-full`}
                         />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <label className={labelClass}>Гостей</label>
                         <input
                           type="number"

@@ -21,6 +21,17 @@ export default function Navbar() {
   }, [location]);
 
   useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
+
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -128,10 +139,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white pt-20 flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-40 bg-white flex flex-col overflow-hidden"
+            style={{ height: "100dvh" }}
           >
+            {/* Top: same height as navbar header so links start right below it */}
+            <div className="h-16 shrink-0" />
+
             {/* Nav links */}
-            <nav className="flex flex-col gap-1 px-6 mt-4">
+            <nav className="flex flex-col gap-1 px-6 pt-4 shrink-0">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -150,12 +165,12 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Phone + socials */}
+            {/* Phone + socials — grows to fill remaining space, centered vertically */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.42 }}
-              className="px-6 mt-8"
+              className="flex-1 flex flex-col justify-center px-6"
             >
               <a
                 href="tel:+78001234567"
@@ -221,12 +236,12 @@ export default function Navbar() {
               </div>
             </motion.div>
 
-            {/* Book button */}
+            {/* Book button — pinned to bottom */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="px-6 mt-6 pb-8"
+              className="px-6 pb-8 pt-4 shrink-0"
             >
               <Link href="/contacts">
                 <button className="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-700 to-blue-500 text-white text-lg font-bold shadow-lg">
